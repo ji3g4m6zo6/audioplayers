@@ -520,8 +520,8 @@ const NSString *_defaultPlayingRoute = @"speakers";
       if (recordingActive) {
         category = AVAudioSessionCategoryPlayAndRecord;
       } else {
-        // category = respectSilence ? AVAudioSessionCategoryAmbient : AVAudioSessionCategoryPlayback;
-        category = AVAudioSessionCategoryAmbient;
+        category = respectSilence ? AVAudioSessionCategoryAmbient : AVAudioSessionCategoryPlayback;
+//         category = AVAudioSessionCategoryAmbient;
       }
       // When using AVAudioSessionCategoryPlayback, by default, this implies that your app’s audio is nonmixable—activating your session
       // will interrupt any other audio sessions which are also nonmixable. AVAudioSessionCategoryPlayback should not be used with
@@ -529,7 +529,8 @@ const NSString *_defaultPlayingRoute = @"speakers";
       if (respectSilence) {
         success = [[AVAudioSession sharedInstance] setCategory:category withOptions:AVAudioSessionCategoryOptionMixWithOthers error:&error];
       } else {
-        success = [[AVAudioSession sharedInstance] setCategory:category error:&error];
+//         success = [[AVAudioSession sharedInstance] setCategory:category error:&error];
+        success = [[AVAudioSession sharedInstance] setCategory:category withOptions:AVAudioSessionCategoryOptionMixWithOthers error:&error];
         [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
       }
       
