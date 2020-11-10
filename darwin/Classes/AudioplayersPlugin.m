@@ -520,7 +520,8 @@ const NSString *_defaultPlayingRoute = @"speakers";
       if (recordingActive) {
         category = AVAudioSessionCategoryPlayAndRecord;
       } else {
-        category = respectSilence ? AVAudioSessionCategoryAmbient : AVAudioSessionCategoryPlayback;
+        // category = respectSilence ? AVAudioSessionCategoryAmbient : AVAudioSessionCategoryPlayback;
+        category = AVAudioSessionCategoryAmbient;
       }
       // When using AVAudioSessionCategoryPlayback, by default, this implies that your app’s audio is nonmixable—activating your session
       // will interrupt any other audio sessions which are also nonmixable. AVAudioSessionCategoryPlayback should not be used with
